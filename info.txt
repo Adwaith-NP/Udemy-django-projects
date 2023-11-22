@@ -1,0 +1,14 @@
+python3 manage.py makemigrations food
+python3 manage.py sqlmigrate food 0001
+python3 manage.py shell   {
+        a = item(item_name = "Pizzza",item_desc = "Indian Pizza",item_price = 200)
+        a.save()
+        a.id or a.pk --> primery key
+}
+
+from django.template import loader{
+        template = loader.get_template('food/index.html')
+        return HttpResponse(template.render(request))
+
+        the template are kept in templates folder on the app folder
+}
