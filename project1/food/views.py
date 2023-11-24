@@ -14,3 +14,10 @@ def index(request):
 
 def item_l(request):
     return HttpResponse("the page for item")
+
+def detail(request,item_id):
+    details = item.objects.get(pk = item_id)
+    context = {
+        'item_detail':details,
+    }
+    return render(request,'food/detail.html',context)

@@ -1,0 +1,14 @@
+{% extends 'food/base.html' %}
+    {% block body %}
+    <ul>
+        <li>
+            food name : {{item_detail.item_name}}
+        </li>
+        <li>
+            food details : {{item_detail.item_desc}} 
+        </li>
+        <li>
+            food price : {{item_detail.item_price}}
+        </li>
+    </ul>
+    {% endblock %}

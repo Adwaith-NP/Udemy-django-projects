@@ -12,3 +12,15 @@ from django.template import loader{
 
         the template are kept in templates folder on the app folder
 }
+
+{% url 'name' paramiter %}
+
+naveBar ---- bootstrap for naveBar
+
+{% extends "url"}
+{% block body %}
+{% endbload %}
+
+
+forms
+

@@ -1,18 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Its in templets</h1>
+{% extends 'food/base.html' %}
+    {% block body %}
     {% for i in  item_list%}
-    <ul>
-        <li>
-    <p>{{i.pk}}--{{i.item_name}}</p>
-        </li>
-    </ul>
+    <div class ="row">
+        <div class = "col-md-3 offset-md-2">
+            <img class = "card" height = "150px" src = "{{i.item_img}}">
+        </div>
+        <div class="col-md-4">
+            <h3>{{i.item_name}}</h3>
+            <h5>{{i.item_desc}}</h4>
+            <h6>${{i.item_price}}</h6>
+        </div>
+
+        <div class="col-md-2">
+            <a href="{% url 'food:detail' i.pk %}" class="btn btn-success">detail</a>
+        </div>
+    </div>
     {% endfor %}
-</body>
-</html>
+    {% endblock %}
+
+    {% comment %} <ul>
+        <li>
+    <a href = '{% url 'food:detail' i.pk %}'>{{i.pk}}--{{i.item_name}}</a>
+        </li>
+    </ul> {% endcomment %}
