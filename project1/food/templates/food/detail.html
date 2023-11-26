@@ -11,4 +11,5 @@
             food price : {{item_detail.item_price}}
         </li>
     </ul>
+    <a href="{% url 'food:del' item_detail.pk %}">Delete</a>
     {% endblock %}
