@@ -10,9 +10,10 @@ def register(request):
         form = userLogin(request.POST)
         if form.is_valid():
             form.save()
+            email = form.cleaned_data.get('email')
             username = form.cleaned_data.get('username')
-            messages.success(request,f"welcome {username}")
-            return redirect('food:Index')
+            messages.success(request,f"welcome {username},varify email {email}")
+            return redirect('login')
     form = userLogin()
     return render(request,"users/register.html",{'form':form})
     

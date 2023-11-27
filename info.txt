@@ -22,7 +22,19 @@ naveBar ---- bootstrap for naveBar
 {% endbload %}
 
 
-forms
+forms{
+        from django import forms
+        from django.contrib.auth.forms import UserCreationForm
+        from django.contrib.auth.models import User
+
+        class userLogin(UserCreationForm):
+        email = forms.EmailField()
+        
+        class Meta:
+                model = User
+                fields = ['username','email','password1','password2']
+
+}
 
 
 {
@@ -35,4 +47,15 @@ forms
         {% endblock  %}
 
         messages.success(request,f"welcome {username}")
+}
+
+
+
+authentication_view {
+        from django.contrib.auth import views as authentication_Views
+        path("login/",authentication_Views.LoginView.as_view(template_name = 'users/login.html'),name = 'login'),
+        path('logout/',authentication_Views.LogoutView.as_view(template_name = 'users/logout.html'),name = 'logout'),
+
+
+        in settings : LOGIN_REDIRECT_URL = <path of the page> ex : 'food:Index'
 }
