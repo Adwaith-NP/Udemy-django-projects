@@ -24,3 +24,15 @@ naveBar ---- bootstrap for naveBar
 
 forms
 
+
+{
+        {% if messages %}
+            {%for message in  messages%}
+                {{message}}
+            {%endfor%}
+        {% endif %}
+        {% block body %}
+        {% endblock  %}
+
+        messages.success(request,f"welcome {username}")
+}
