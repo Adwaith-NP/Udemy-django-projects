@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from food.models import item
-from django.template import loader
+# from django.template import loader
 from food.form import addItem
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
@@ -47,3 +48,7 @@ def item_delete(request,id):
         item_details.delete()
         return redirect('food:Index')
     return render(request,'food/detail.html')
+
+@login_required
+def profile(request):
+    return render(request,'food/profile.html')

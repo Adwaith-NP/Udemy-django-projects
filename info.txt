@@ -59,3 +59,33 @@ authentication_view {
 
         in settings : LOGIN_REDIRECT_URL = <path of the page> ex : 'food:Index'
 }
+
+
+{% if user.is_authenticated %}
+
+
+
+
+LOGIN_URL = 'login'
+@login_required
+from django.contrib.auth.decorators import login_required
+
+
+from django.db import models
+from django.contrib.auth.models import User
+# Create your models here.
+
+class profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+
+
+To create a media field go to settings and {
+        MESIA_ROOT = os.path.join(BASE_DIR,'name_of_the_file')
+        MESIA_URL = 'nameOfTheFile'
+}
+
+to django to know in the project we using user uploaded image{
+        from django.conf.urls.static import static
+        from django.conf import settings
+        urlpattern += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+}

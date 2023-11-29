@@ -15,9 +15,14 @@
             <a href=# class="navbar-brand">FoodApp</a>
     
             <div class="navbar">
-                <a class="nav-item nave-link" href="{% url 'food:add' %}">Add item</a>
-                <a class="nav-item nave-link" href="#">delete item</a>
-                <a class="nav-item nave-link" href="#">View item</a>
+                <a class="nav-item nave-link" href="{% url 'food:add' %}">Add item  |</a>
+                <a class="nav-item nave-link" href="#">delete item  |</a>
+                <a class="nav-item nave-link" href="#">View item  |</a>
+                {% if user.is_authenticated %}
+                <a class="nav-item nave-link" href="{% url 'logout' %}">logout  |</a>
+                {% else %}
+                <a class="nav-item nave-link" href="{% url 'login' %}">login  |</a>
+                {% endif %}
             </div>
         </nav>
         {% if messages %}
