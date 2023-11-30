@@ -14,6 +14,8 @@ def register(request):
             username = form.cleaned_data.get('username')
             messages.success(request,f"welcome {username},varify email {email}")
             return redirect('login')
+        else:
+            print('Error')
     form = userLogin()
     return render(request,"users/register.html",{'form':form})
     

@@ -4,15 +4,25 @@ from food.models import item
 # from django.template import loader
 from food.form import addItem
 from django.contrib.auth.decorators import login_required
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 # Create your views here.
 
-def index(request):
-    items_list = item.objects.all()
-    # template = loader.get_template('food/index.html')
-    context = {
-        'item_list':items_list
-    }
-    return render(request,'food/index.html',context)
+# def index(request):
+#     items_list = item.objects.all()
+#     # template = loader.get_template('food/index.html')
+#     context = {
+#         'item_list':items_list
+#     }
+#     return render(request,'food/index.html',context)
+
+#Class based index view
+
+class index(ListView):
+    model = item
+    template_name = 'food/index.html'
+    context_object_name = 'item_list'
+
 
 def item_l(request):
     return HttpResponse("the page for item")
