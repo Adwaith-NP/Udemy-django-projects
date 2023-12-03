@@ -1,3 +1,4 @@
+from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from food.models import item
@@ -6,6 +7,7 @@ from food.form import addItem
 from django.contrib.auth.decorators import login_required
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
 # Create your views here.
 
 # def index(request):
@@ -27,20 +29,38 @@ class index(ListView):
 def item_l(request):
     return HttpResponse("the page for item")
 
-def detail(request,item_id):
-    details = item.objects.get(pk = item_id)
-    context = {
-        'item_detail':details,
-    }
-    return render(request,'food/detail.html',context)
+# def detail(request,item_id):
+#     details = item.objects.get(pk = item_id)
+#     context = {
+#         'item_detail':details,
+#     }
+#     return render(request,'food/detail.html',context)
 
-def add_Item(request):
-    form = addItem(request.POST or None)
+# Class based detail view
+
+class detail(DetailView):
+    model = item
+    template_name = 'food/detail.html'
+
+
+# def add_Item(request):
+#     form = addItem(request.POST or None)
     
-    if form.is_valid():
-        form.save()
-        return redirect('food:Index')
-    return render(request,'food/add.html',{'form':form})
+#     if form.is_valid():
+#         form.save()
+#         return redirect('food:Index')
+#     return render(request,'food/add.html',{'form':form})
+
+# Class based Create view
+
+class add_Item(CreateView):
+    model = item
+    fields = ['item_name','item_desc','item_price','item_img']
+    template_name = 'food/add.html'
+    
+    def form_valid(self,form):
+        form.instance.user_name = self.request.user
+        return super().form_valid(form)
 
 def edit_item(request,id):
     item_details = item.objects.get(pk = id)

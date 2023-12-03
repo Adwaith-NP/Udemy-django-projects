@@ -119,3 +119,9 @@ class index(ListView):
     model = item
     template_name = 'food/index.html'
     context_object_name = 'item_list'
+
+from django.views.generic.detail import DetailView
+
+class detail(DetailView):
+    model = item
+    template_name = 'food/detail.html'

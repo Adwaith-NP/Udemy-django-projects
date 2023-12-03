@@ -2,14 +2,17 @@
     {% block body %}
     <ul>
         <li>
-            food name : {{item_detail.item_name}}
+            food name : {{object.item_name}}
         </li>
         <li>
-            food details : {{item_detail.item_desc}} 
+            food details : {{object.item_desc}} 
         </li>
         <li>
-            food price : {{item_detail.item_price}}
+            food price : {{object.item_price}}
+        </li>
+        <li>
+            uploader name : {{object.user_name}}
         </li>
     </ul>
-    <a href="{% url 'food:del' item_detail.pk %}">Delete</a>
+    <a href="{% url 'food:del' object.pk %}">Delete</a>
     {% endblock %}
