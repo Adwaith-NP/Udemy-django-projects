@@ -125,3 +125,46 @@ from django.views.generic.detail import DetailView
 class detail(DetailView):
     model = item
     template_name = 'food/detail.html'
+
+
+
+------------------------API -- Restframwork API in django----------------------------
+
+
+___serializer____
+
+from rest_framework import serializers
+from .models import Moviedata
+
+class Movieserializer(serializers.ModelSerializer):
+    class Meta:
+	img = serializers.ImageField(max_length = None,use_url = True)
+        model = Moviedata
+        fields = ['pk','name','duration','rating','img]
+
+	----views---
+
+from django.shortcuts import render
+from rest_framework import viewsets
+from .serializer import Movieserializer
+from .models import Moviedata
+# Create your views here.
+
+
+class MovieViewSet(viewsets.ModelViewSet):
+    queryset = Moviedata.objects.all()
+    serializer_class= Movieserializer
+
+    ----API end user ------
+
+	___view___
+
+	class ActionViewSet(viewsets.ModelViewSet):
+        queryset = Moviedata.objects.filter(typ = 'Action')
+	serializer_class = Movieserializer
+
+	___urls__
+	
+	router = routers.SimpleRouter()
+	router.register('movie',MovieViewSet)
+	router.register('action',ActionViewSet)
